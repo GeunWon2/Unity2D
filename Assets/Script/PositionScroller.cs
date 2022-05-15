@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class PositionScroller : MonoBehaviour
 {
-    [SerializeField]
-    private Transform target;   
-    [SerializeField]
-    private float scrollRange = 6.5f;
-    [SerializeField]
-    private float moveSpeed = 2.0f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.left;
+    [SerializeField] private Transform target;   
+    [SerializeField] private float scrollRange = 6.5f;
+    //[SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private Vector3 moveDirection = Vector3.left;
     void Update()
     {
         //if(nextStage == true)

@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSkill : MonoBehaviour
+[CreateAssetMenu(fileName = "MagicSkill")]
+public class MagicSkill : ScriptableObject
 {
-    private enum SkillType { Launch, Area, Buff }
-    [SerializeField]
-    private string  skillName;
-    private SkillType skillType;
-    private int damage;
-    private int manaUsage;
-    private int coolTime;
-    private int magicSpeed;
-    private void Init()
-    {
-        
-    }
-
-
+    public string  SkillName;
+    [Range(0, 100)] public int Damage;
+    [Range(0, 100)] public int CostMP;
+    [Range(0, 100)] public int CoolTime;
+    [Range(0, 100)] public int Price;
+    public Sprite Thumbnail;
+    public Sprite MagicEffect;
 
 }

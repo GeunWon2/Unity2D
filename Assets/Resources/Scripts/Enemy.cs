@@ -1,55 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
     public int maxHP;
-    public int HP;
     public int damage;
     public int coolTime;
     public bool bDead;
     public int level;
+    public int No;
+
+    public UnitHealthSystem UnitHp;
+
+    public UnityEvent<int> enemyDied;
+
+    //public delegate void UnitDiedEventHandler(Enemy enemy);
+    //public event UnitDiedEventHandler EnemyDiedEvent;
 
     private void Awake()
     {
-        Init();
+        Init();      
     }
 
-    private void Init()
+    public void Init()
     {
         int temp = EnemyWave.waveLevelNo();
 
-        maxHP = 100 + (temp * 10);
-        HP = maxHP;
         bDead = false;
+        maxHP = 100 + (temp * 10);
+        UnitHp.InitHP(maxHP);
+
+
         damage = 1;
         coolTime = 5;
         level = 1;
     }
 
-
-    private void Update()
+    
+    public void Hurt(int damage)
     {
-
-        if (HP <= 0)
-        {
-            bDead = true;
-            Destroy(gameObject);
-        }
-
+        UnitHp.ChangeHP(-damage);
     }
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Died()
     {
-        if(collision.gameObject.name == ("Magic"))
-        {
-            HP -= Magic.hit();
-        }
+        bDead = true;
+        Destroy(this.gameObject);
+
+        //DelegateEventEnemyDied();
     }
 
-
-
+    //private void DelegateEventEnemyDied()
+    //{
+    //    if(EnemyDiedEvent != null)
+    //    {
+    //        EnemyDiedEvent(this);
+    //    }
+    //}
 }

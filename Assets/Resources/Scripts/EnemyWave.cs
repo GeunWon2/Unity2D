@@ -2,42 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class EnemyWave : MonoBehaviour
 {
-    public int waveLevel;
     public GameObject enemyTile;
-    public static Func<int> enemyCnt;
     public static Func<int> waveLevelNo;
+    
+    public UnityEvent<List<Enemy>> TargetPost;
 
-
-    private GameObject[] normalEnemyPrefab = null;
-    private GameObject[] bossEnemyPrefab = null;
-
+    private bool bClear;
+    private int waveLevel;
+    private List<Enemy> EnemyList = new();
+    private Enemy[] normalEnemyPrefab;
+    private Enemy[] bossEnemyPrefab;
 
     private void Awake()
     {
-        normalEnemyPrefab = Resources.LoadAll<GameObject>("Enemy/Normal");
-        bossEnemyPrefab = Resources.LoadAll<GameObject>("Enemy/Boss");
+        normalEnemyPrefab = Resources.LoadAll<Enemy>("Prefabs/Enemy/Normal");
+        bossEnemyPrefab = Resources.LoadAll<Enemy>("Prefabs/Enemy/Boss");
         waveLevel = 1;
-        EnemyReset();
+        WaveGeneration();
     }
 
-    public bool WaveClear()
-    {
-        if(transform.childCount == 0)
-        {
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    public void WaveClear(bool bclaer)
+    {
+        bClear = bclaer;
+        Debug.Log("Clear");
+        WaveGeneration();
     }
 
-    public void EnemyReset()
+    public void WaveGeneration()
     {
+        
+        bClear = false;
+        EnemyList.Clear();
         waveLevelNo = () => { return waveLevel; };
 
         int level = waveLevel % 6;
@@ -48,17 +48,26 @@ public class EnemyWave : MonoBehaviour
             for (int i = 0; i < level; i++)
             {
                 int random = UnityEngine.Random.Range(0, normalEnemyPrefab.Length);
-                GameObject instance = Instantiate(normalEnemyPrefab[random], transform);
+                Enemy instance = Instantiate(normalEnemyPrefab[random], transform);
                 instance.transform.position = enemyTile.transform.GetChild(i).transform.position;
+                EnemyList.Add(instance);
             }
         }
         else if(bossNo != 0)
         {
-            GameObject instance = Instantiate(bossEnemyPrefab[level + (bossNo - 1)], transform);
+            Enemy instance = Instantiate(bossEnemyPrefab[level + (bossNo - 1)], transform);
             instance.transform.position = enemyTile.transform.GetChild(5).transform.position;
+            EnemyList.Add(instance);
         }
-        enemyCnt = () => { return transform.childCount; };
+
+        TargetPost.Invoke(EnemyList);
         waveLevel++;
+    }
+
+
+    public int GetClearGoal()
+    {
+        return EnemyList.Count;
     }
 
 

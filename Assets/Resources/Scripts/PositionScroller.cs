@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class PositionScroller : MonoBehaviour
 {
-    [SerializeField] private Transform target1;
-    [SerializeField] private Transform target2;   
-    [SerializeField] private float scrollRange = 6.5f;
-    [SerializeField] private float moveSpeed = 2.0f;
-    [SerializeField] private Vector3 moveDirection = Vector3.left;
+    public Transform target1;
+    public Transform target2;   
+    private float scrollRange = 6.5f;
+    private float moveSpeed = 2.0f;
+    private Vector3 moveDirection = Vector3.left;
 
-    public bool NextStage(bool bclear)
+    public UnityEvent StageChangeEvent;
+
+
+    public void NextStage(bool bclear)
     {
-
         if (bclear)
         {
             target1.transform.position += moveDirection * moveSpeed * Time.deltaTime;
@@ -21,18 +23,21 @@ public class PositionScroller : MonoBehaviour
             if (target1.transform.position.x <= -scrollRange)
             {
                 target1.transform.position = target2.position + Vector3.right * scrollRange;
-                bclear = false;
+                StageSet();
             }
 
             if (target2.transform.position.x <= -scrollRange)
             {
                 target2.transform.position = target1.position + Vector3.right * scrollRange;
-                bclear = false;
+                StageSet();
             }
         }
 
-        return bclear;
+    }
 
+    private void StageSet()
+    {
+        StageChangeEvent.Invoke();
     }
 
 

@@ -3,92 +3,122 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Events;
-public enum SkillActionType
-{
-    Automatic,
-    ManualButton
-}
+using System;
 
 public class UnitSkill : MonoBehaviour
 {
-    public UnitSkillData data;
-    public SkillActionType playType;
+    public enum SkillMode
+    {
+        Auto,
+        Maual
+    }
 
-    private int No;
+    public UnitSkillData data;
+    public SkillMode skillMode;
+    public CoolTimer coolTimer;
 
     public bool bCooldownActive;
     public bool bSkillReady;
 
-    public PlayableDirector showSkill;
+    public PlayableDirector skillTimeline;
 
-    public UnityEvent<int> skillReady;
-    public UnityEvent<int, TargetType> skillToTarget;
-    public UnityEvent<int> skillFinish;
+    public UnityEvent<int> skillReadyInsert;
+    public UnityEvent<int, TargetType> targetToSkill;
+    public UnityEvent<int> skillCastFinish;
 
-    //public delegate void SkillUIHandler(float newCoolTimeAmount);
-    //public event SkillUIHandler SkillUIChange;
+    //public delegate void SkillCooltimeChangeEventHanlder(float cooldownAmount);
+    //public event SkillCooltimeChangeEventHanlder skillCooldownChangeEvent;
 
-    public void Numbering(int newNo)
+    //public delegate void SkillReadyEventHandler();
+    //public event SkillReadyEventHandler skillReadyEvent;
+
+    private int ID;
+
+    private void Update()
     {
-        No = newNo;
+        StartCooldown();
     }
 
-    public void Casting()
+    public void SetID(int newID)
+    {
+        ID = newID;
+    }
+
+    public void SetTimer()
+    {
+        coolTimer = new CoolTimer(data.coolTime);
+    }
+
+    public void StartCooldownSet()
     {
         bCooldownActive = true;
         bSkillReady = false;
     }
 
-    private void Update()
+
+    private void StartCooldown()
     {
         if(bCooldownActive)
         {
-            StartCoroutine(CoolDown());
+            coolTimer.UpdateTime();
+
+            if(coolTimer.Elapsed())
+            {
+                coolTimer.Finish();
+                coolTimer.Init();
+                SkillCooldownFinish();
+                return;
+            }
+
         }
     }
 
-
-    IEnumerator CoolDown()
-    {
-        yield return new WaitForSeconds(data.coolTime);
-        EndCoolDown();
-    }
-
-
-    public void EndCoolDown()
+    private void SkillCooldownFinish()
     {
         bCooldownActive = false;
         bSkillReady = true;
-        ReadySkill();
+
+        switch (skillMode)
+        {
+            case SkillMode.Auto:
+                SkillCastingListAdd();
+                break;
+            case SkillMode.Maual:
+                break;
+        }
     }
 
-    public void ReadySkill()
+    public void SkillCastingListAdd()
     {
-        if (bSkillReady)skillReady.Invoke(No);
+       
+        if(bSkillReady)
+        {
+            skillReadyInsert.Invoke(ID);
+        }
     }
 
-    public void StopSkill()
+    public void StartCasting()
+    {
+        skillTimeline.Play();
+        bSkillReady = false;
+    }
+
+    public void StopCasting()
     {
         bCooldownActive = false;
         bSkillReady = false;
     }
 
-
-    public void CastingBegin()
+    public void CastingAffect()
     {
-        showSkill.Play();
-        bSkillReady = false;
-    }
-
-    public void CastingTarget()
-    {
-        skillToTarget.Invoke(data.GetValue(), data.targetType);
+        int value = data.GetValue();
+        targetToSkill.Invoke(value, data.targetType);
     }
 
     public void CastingFinish()
     {
         bCooldownActive = true;
-        skillFinish.Invoke(No);
+        skillCastFinish.Invoke(ID);
     }
 
 

@@ -1,5 +1,165 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &709554918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709554919}
+  - component: {fileID: 709554922}
+  - component: {fileID: 709554921}
+  - component: {fileID: 709554920}
+  m_Layer: 0
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709554919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709554918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4446104854140217332}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &709554922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709554918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d85336b72ea88340956ba60eb7dac05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 14e1d68f08cb52c4fa4215d4fda2bd98, type: 2}
+  skillMode: 0
+  bCooldownActive: 0
+  bSkillReady: 0
+  skillTimeline: {fileID: 709554921}
+  skillReadyInsert:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1997920755}
+        m_TargetAssemblyTypeName: UnitSkillSystem, Assembly-CSharp
+        m_MethodName: SkillListAdd
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  targetToSkill:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1997920751}
+        m_TargetAssemblyTypeName: UnitCore, Assembly-CSharp
+        m_MethodName: CastingTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  skillCastFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1997920755}
+        m_TargetAssemblyTypeName: UnitSkillSystem, Assembly-CSharp
+        m_MethodName: CastingFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!320 &709554921
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709554918}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2b372df8e7882514492685036c923dd8, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 6949439273202349608, guid: 2b372df8e7882514492685036c923dd8, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &709554920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709554918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 56b9742653a4c144babc1daa8240dd59, type: 2}
+    - {fileID: 11400000, guid: 96aced7edff1f0a4e890ec0a94569ce5, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 709554922}
+          m_TargetAssemblyTypeName: UnitSkill, Assembly-CSharp
+          m_MethodName: CastingAffect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 709554922}
+          m_TargetAssemblyTypeName: UnitSkill, Assembly-CSharp
+          m_MethodName: CastingFinish
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4446104854140217333
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,8 +171,11 @@ GameObject:
   - component: {fileID: 4446104854140217332}
   - component: {fileID: 4446104854140217331}
   - component: {fileID: 4446104854140217330}
-  - component: {fileID: -654189546182783558}
-  - component: {fileID: 8226203873550688872}
+  - component: {fileID: 1997920751}
+  - component: {fileID: 1997920754}
+  - component: {fileID: 1997920752}
+  - component: {fileID: 1997920753}
+  - component: {fileID: 1997920755}
   m_Layer: 0
   m_Name: 00.Bat
   m_TagString: Untagged
@@ -29,9 +192,10 @@ Transform:
   m_GameObject: {fileID: 4446104854140217333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 709554919}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,7 +271,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-654189546182783558
+--- !u!114 &1997920751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,20 +280,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446104854140217333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adfd57bcb792614798f10a6332fe6e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d807612834fc4d469f7682b9be51070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  damage: 1
-  coolTime: 5
-  bDead: 0
-  level: 6
-  No: 0
-  UnitHp: {fileID: 8226203873550688872}
-  enemyDied:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &8226203873550688872
+  data: {fileID: 11400000, guid: 47776647646470145aac35282ec21799, type: 2}
+  HP: {fileID: 1997920754}
+  target: {fileID: 1997920753}
+  skill: {fileID: 1997920755}
+  anim: {fileID: 1997920752}
+--- !u!114 &1997920754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,16 +297,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446104854140217333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfd20f392b3b3045969e6dd7a3382f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ec4e12c6c959eb43afda8dce78d8aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
+  changeHP:
+    m_PersistentCalls:
+      m_Calls: []
   HPZeroEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -654189546182783558}
-        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: Died
+      - m_Target: {fileID: 1997920751}
+        m_TargetAssemblyTypeName: UnitCore, Assembly-CSharp
+        m_MethodName: UnitDie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -157,3 +319,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1997920752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446104854140217333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395f052cafdecd34490dfb1fbe9a15b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4446104854140217330}
+--- !u!114 &1997920753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446104854140217333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b502ccf391b3744bb9ba1ed151c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetList: []
+--- !u!114 &1997920755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446104854140217333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283cb84d4d02efe44913ae0205855bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 709554922}

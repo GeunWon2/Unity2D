@@ -4,48 +4,44 @@ using UnityEngine;
 
 public enum TargetType
 {
-    SingleTarget,
-    MultiTarget
+    Single,
+    Multi
 }
 
-public enum ImfactValue
+public enum SkillType
 {
-    Heal,
-    Damage
+    Buff,
+    Attack
 }
 
-[CreateAssetMenu(fileName = "SkillData", menuName = "Unit/Skill Data", order = 2)]
+[CreateAssetMenu(fileName = "SkillData", menuName = "SkillData")]
 public class UnitSkillData : ScriptableObject
 {
     public string skillName;
-    public ImfactValue imfactValue;
-    public int value;
-    public float coolTime;
     public TargetType targetType;
+    public SkillType skillType;
+    public int skillValue;
+    public float coolTime;
 
     public int GetValue()
     {
-        return value * ValueImfactResult();
-        //return Random.Range(valueRange.x, valueRange.y) * ValueImfactResult();
+        return skillValue * SkillTypeInit();
     }
 
-    private int ValueImfactResult()
+    private int SkillTypeInit()
     {
         int value = 0;
 
-        switch(imfactValue)
+        switch (skillType)
         {
-            case ImfactValue.Heal:
+            case SkillType.Buff:
                 value = 1;
                 break;
-
-            case ImfactValue.Damage:
+            case SkillType.Attack:
                 value = -1;
                 break;
         }
-
         return value;
     }
-
 
 }

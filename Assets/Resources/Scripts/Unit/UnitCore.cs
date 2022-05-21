@@ -5,81 +5,78 @@ using UnityEngine;
 
 public class UnitCore : MonoBehaviour
 {
-    [Header("Info")]
-    public UnitInfo info;
+    public UnitData data;
+    public UnitPointSystem HP;
 
-    [Header("HP Set")]
-    public UnitHealthSystem HP;
-    private bool bUnitAlive;
-
-    [Header("Target Set")]
-    public UnitTargetingSystem target;
-
-    [Header("Skill Set")]
+    public UnitTargetSystem target;
     public UnitSkillSystem skill;
-
-    [Header("Anim Set")]
-    public UnitAnimationSystem anim;
-
-    public bool bInit;
+    public UnitAnim anim;
+        
+    private bool bAlive;
 
     public delegate void UnitDiedEventHandler(UnitCore unit);
-    public event UnitDiedEventHandler unitDiedEvent;
+    public event UnitDiedEventHandler UnitDiedEvent;
 
     private void Start()
     {
-        Init();
-        Started();
+        SetAlive();
+        StartGame();
     }
 
-    public void SetTargets(List<UnitCore> units)
+    public void SetAlive()
     {
-        target.TargetInit(units);
+        HP.SetupHP(data.maxHP);
+        bAlive = true;
     }
 
-    public void RemoveTargets(UnitCore unit)
+    public bool GetAlive()
     {
-        target.RemoveTarget(unit);
+        return bAlive;
     }
 
 
-    public void Init()
+    public void StartGame()
     {
-        HP.InitHP(info.maxHP);
-        bUnitAlive = true;
+        skill.StartSkillsCooldown();
     }
 
-    public void Started()
+    public void EndGame()
     {
-        skill.SkillsCasting();
+        skill.StopCasting();
     }
 
-    public void Ened()
+    public void TargetAdd(List<UnitCore> targets)
     {
-        skill.StopSkillSystem();
+        this.target.TargetAdd(targets);
     }
 
-    public void SkillAffect(int skillValue, TargetType targetType)
+
+
+    public void TargetDelete(UnitCore target)
     {
-        List<UnitCore> targets = target.TargetingFilter(targetType);
+        this.target.TaretDelete(target);
+    }
+
+    public void CastingTarget(int skillValue, TargetType targetType)
+    {
+        List<UnitCore> targets = target.TargetRange(targetType);
 
         if(targets.Count > 0)
         {
             for(int i = 0; i < targets.Count; i++)
             {
-                targets[i].ReciveSkillValue(skillValue);
+                targets[i].CastingAffect(skillValue);
             }
         }
 
     }
 
-    public void ReciveSkillValue(int skillValue)
+    public void CastingAffect(int skillValue)
     {
-        if(bUnitAlive)
+        if(bAlive)
         {
             HP.ChangeHP(skillValue);
-            anim.AnimState(animState.Hit);
-
+            anim.Hit();
         }
     }
 
@@ -88,19 +85,18 @@ public class UnitCore : MonoBehaviour
         return HP.GetHP();
     }
 
-    public void UnitDied()
+
+    public void UnitDie()
     {
-        bUnitAlive = false;
-        skill.StopSkillSystem();
-        anim.AnimState(animState.Die);
+        bAlive = false;
+        skill.StopCasting();
+        anim.Die();
 
-
-        DelegateDied();
+        DelegateEventUnitDie();
     }
 
-    private void DelegateDied()
+    private void DelegateEventUnitDie()
     {
-        unitDiedEvent?.Invoke(this);
+        UnitDiedEvent?.Invoke(this);
     }
-
 }

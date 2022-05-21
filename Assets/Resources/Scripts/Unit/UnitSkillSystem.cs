@@ -3,83 +3,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UnitSkillSystem : MonoBehaviour
 {
     public UnitSkill[] skills;
 
-    private List<int> skillList;
-    private bool bCasting;
-    private bool bActive;
+    [SerializeField] private List<int> skillList;
+
+    private bool bSkillCastingReady;
+    private bool bSkillActive;
 
     private void Awake()
     {
-        skillList = new List<int>();
-        Init();
+        skillList = new();
+        InitSkills();
     }
 
-    private void Init()
+    private void InitSkills()
     {
         for(int i = 0; i < skills.Length; i++)
         {
-            skills[i].Numbering(i);
+            skills[i].SetID(i);
+            skills[i].SetTimer();
         }
     }
 
-    public void SkillsCasting()
+    public void StartSkillsCooldown()
     {
-        bCasting = true;
-        bActive = false;
+        bSkillCastingReady = true;
+        bSkillActive = false;
 
         for(int i = 0; i < skills.Length; i++)
         {
-            skills[i].Casting();
+            skills[i].StartCooldownSet();
         }
+
     }
 
-    public void AddCoolDownList(int skillNo)
+    public void SkillListAdd(int ID)
     {
-        skillList.Add(skillNo);
-        NextSkill();
+        skillList.Add(ID);
+        CastingCheck();
     }
 
-    private void NextSkill()
+    private void CastingCheck()
     {
         if(skillList.Count > 0)
         {
-            if(!bActive)
+            if(!bSkillActive)
             {
-                if(bCasting)
+                if(bSkillCastingReady)
                 {
-                    ShowSkills();
-                    bActive = true;
+                    StartCasting();
+                    bSkillActive = true;
                 }
             }
         }
     }
 
-    private void ShowSkills()
+    private void StartCasting()
     {
-        int temp = skillList[0];
-        skills[temp].CastingBegin();
-        skillList.Remove(0);
+        int castingID = skillList[0];
+        skills[castingID].StartCasting();
+        skillList.RemoveAt(0);
     }
 
-    public void SkillListFinish()
+    public void CastingFinish()
     {
-        bActive = false;
-        NextSkill();
+        bSkillActive = false;
+        CastingCheck();
     }
 
-    public void StopSkillSystem()
+    public void StopCasting()
     {
         skillList.Clear();
-        bCasting = false;
+        bSkillCastingReady = false;
 
         for(int i = 0; i < skills.Length; i++)
         {
-            skills[i].StopSkill();
+            skills[i].StopCasting();
         }
     }
+
 
 
 }

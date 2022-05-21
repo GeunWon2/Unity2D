@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2011479671595412616}
   - component: {fileID: 2011479671595412623}
   - component: {fileID: 2011479671595412621}
-  - component: {fileID: -4486572410421110336}
   m_Layer: 0
   m_Name: 02.PebbleBoss
   m_TagString: Untagged
@@ -106,25 +105,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-4486572410421110336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011479671595412617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adfd57bcb792614798f10a6332fe6e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 150
-  damage: 1
-  coolTime: 15
-  bDead: 0
-  level: 6
-  No: 0
-  UnitHp: {fileID: 0}
-  enemyDied:
-    m_PersistentCalls:
-      m_Calls: []

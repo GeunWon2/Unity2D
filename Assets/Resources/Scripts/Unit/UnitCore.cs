@@ -17,6 +17,8 @@ public class UnitCore : MonoBehaviour
     public delegate void UnitDiedEventHandler(UnitCore unit);
     public event UnitDiedEventHandler UnitDiedEvent;
 
+   
+
     private void Start()
     {
         SetAlive();
@@ -55,7 +57,9 @@ public class UnitCore : MonoBehaviour
     public void TargetDelete(UnitCore target)
     {
         this.target.TaretDelete(target);
+     
     }
+
 
     public void CastingTarget(int skillValue, TargetType targetType)
     {
@@ -93,6 +97,7 @@ public class UnitCore : MonoBehaviour
         anim.Die();
 
         DelegateEventUnitDie();
+        Destroy(this.gameObject);
     }
 
     private void DelegateEventUnitDie()

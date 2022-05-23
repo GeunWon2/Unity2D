@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59bc5be479fcd664ab42731c101da235, type: 3}
-  m_Name: Attack
+  m_Name: EnemyAttack
   m_EditorClassIdentifier: 
-  skillName: Attack
+  skillName: EnemyAttack
   targetType: 0
   skillType: 1
   skillValue: 1

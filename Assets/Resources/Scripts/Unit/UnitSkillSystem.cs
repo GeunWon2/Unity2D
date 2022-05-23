@@ -76,7 +76,7 @@ public class UnitSkillSystem : MonoBehaviour
 
     public void StopCasting()
     {
-        skillList.Clear();
+        //skillList.Clear();
         bSkillCastingReady = false;
 
         for(int i = 0; i < skills.Length; i++)

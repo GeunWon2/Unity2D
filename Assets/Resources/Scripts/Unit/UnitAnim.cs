@@ -8,22 +8,33 @@ public class UnitAnim : MonoBehaviour
 
     public void Hit()
     {
-        anim.SetTrigger("hit");
+        anim.SetTrigger("Hit");
     }
 
     public void Die()
     {
-        anim.SetTrigger("die");
+        anim.SetTrigger("Death");
     }
 
     public void Idle()
     {
-        anim.SetTrigger("idle");
+        anim.SetTrigger("Idle");
     }
 
     public void Attack()
     {
-        anim.SetTrigger("attack");
+        anim.SetTrigger("Attack");
     }
+
+    public void RunOn()
+    {
+        anim.SetBool("isRun", true);
+    }
+
+    public void RunOff()
+    {
+        anim.SetBool("isRun", false);
+    }
+
 
 }

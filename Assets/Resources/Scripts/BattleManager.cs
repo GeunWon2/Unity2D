@@ -2,22 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GameManager : MonoBehaviour
+using UnityEngine.Events;
+public class BattleManager : MonoBehaviour
 {
     public List<UnitCore> player;
-    public List<UnitCore> enemy;
+    public EnemyWave wave;
+    private List<UnitCore> enemy;
 
-    public bool bAutoTargets = false;
+    public bool bAutoTargets = true;
 
     private List<UnitCore> playerAlive;
     private List<UnitCore> enemyAlive;
 
-    private void Awake()
+    public UnityEvent NextStaget;
+
+
+    private void Start()
     {
         SetupUnits();
         StartBattle();
     }
+
+    public void ReStart()
+    {
+        SetupUnits();
+        StartBattle();
+    }
+
 
     private void SetupUnits()
     {
@@ -71,6 +82,8 @@ public class GameManager : MonoBehaviour
 
 
         enemyAlive = new();
+
+        enemy = wave.GetEnemyList();
 
         for(int i = 0; i < enemy.Count; i++)
         {
@@ -138,14 +151,14 @@ public class GameManager : MonoBehaviour
 
         if(enemyAlive.Count == 0)
         {
-            SetBattleVictor();
+            SetBattleVictory();
         }
     }
 
-    private void SetBattleVictor()
+    private void SetBattleVictory()
     {
-        Debug.Log("Victory");
         StopPlayer(playerAlive);
+        NextStaget.Invoke();
     }
 
     private void SetBattleDefeat()
@@ -160,4 +173,9 @@ public class GameManager : MonoBehaviour
             playerUnit[i].EndGame();
         }
     }
+
+
+
+
+
 }

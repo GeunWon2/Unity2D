@@ -131,6 +131,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 56b9742653a4c144babc1daa8240dd59, type: 2}
     - {fileID: 11400000, guid: 96aced7edff1f0a4e890ec0a94569ce5, type: 2}
+    - {fileID: 11400000, guid: 76716768458cf9442812db5865f747a9, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -151,6 +152,20 @@ MonoBehaviour:
         - m_Target: {fileID: 709554922}
           m_TargetAssemblyTypeName: UnitSkill, Assembly-CSharp
           m_MethodName: CastingFinish
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1997920752}
+          m_TargetAssemblyTypeName: UnitAnim, Assembly-CSharp
+          m_MethodName: Attack
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -359,3 +374,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - {fileID: 709554922}
+  skillList: 

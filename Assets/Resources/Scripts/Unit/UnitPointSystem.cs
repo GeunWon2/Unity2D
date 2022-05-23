@@ -10,11 +10,6 @@ public class UnitPointSystem : MonoBehaviour
     public UnityEvent<int> changeHP;
     public UnityEvent HPZeroEvent;
 
-    //public delegate void HPChangeEventHandler(int HPAmount);
-    //public event HPChangeEventHandler HPChangedEvent;
-
-
-
     public void SetupHP(int maxHP)
     {
         HP = maxHP;
@@ -36,14 +31,8 @@ public class UnitPointSystem : MonoBehaviour
         }
 
         changeHP.Invoke(point);
-        //DelegateEventHPChanged();
+       
     }
-
-
-    //private void DelegateEventHPChanged()
-    //{
-    //    HPChangedEvent?.Invoke(HP);
-    //}
 
 
 }

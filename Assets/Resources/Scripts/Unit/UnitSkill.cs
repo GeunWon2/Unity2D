@@ -99,6 +99,7 @@ public class UnitSkill : MonoBehaviour
 
     public void StartCasting()
     {
+        Debug.Log(this.gameObject.name);
         skillTimeline.Play();
         bSkillReady = false;
     }

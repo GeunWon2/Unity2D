@@ -9,7 +9,7 @@ public class SceneChangeManager : MonoBehaviour
     public Slider slider;
     public int nextScene;
 
-    private float time;
+    private float time = 0;
 
 
     public void TiltleScene()
@@ -39,7 +39,7 @@ public class SceneChangeManager : MonoBehaviour
 
         while(!operation.isDone)
         {
-            time =+ Time.time;
+            time += Time.time;
 
             slider.value = time / 10f;
 

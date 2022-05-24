@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class UnitPointSystem : MonoBehaviour
+public class UnitHealthSystem : MonoBehaviour
 {
     [SerializeField]private int HP;
 
+    public UnityEvent initHP;
     public UnityEvent<int> changeHP;
     public UnityEvent HPZeroEvent;
 
     public void SetupHP(int maxHP)
     {
         HP = maxHP;
+        initHP.Invoke();
     }
 
     public int GetHP()
@@ -33,6 +35,9 @@ public class UnitPointSystem : MonoBehaviour
         changeHP.Invoke(point);
        
     }
+
+
+
 
 
 }

@@ -6,18 +6,17 @@ using UnityEngine;
 public class UnitCore : MonoBehaviour
 {
     public UnitData data;
-    public UnitPointSystem HP;
+    public UnitHealthSystem HP;
 
     public UnitTargetSystem target;
     public UnitSkillSystem skill;
     public UnitAnim anim;
         
     private bool bAlive;
+    private UnitExp exp;
 
     public delegate void UnitDiedEventHandler(UnitCore unit);
     public event UnitDiedEventHandler UnitDiedEvent;
-
-   
 
     private void Start()
     {
@@ -29,6 +28,13 @@ public class UnitCore : MonoBehaviour
     {
         HP.SetupHP(data.maxHP);
         bAlive = true;
+
+        if(data.unitType == EUnitType.Player)
+        {
+            exp = GetComponent<UnitExp>();
+            exp.SetupEXP(data.level, data.exp);
+        }
+
     }
 
     public bool GetAlive()
@@ -36,6 +42,15 @@ public class UnitCore : MonoBehaviour
         return bAlive;
     }
 
+    public int GetCoin()
+    {
+        return data.coin;
+    }
+
+    public int GetExp()
+    {
+        return data.exp;
+    }
 
     public void StartGame()
     {

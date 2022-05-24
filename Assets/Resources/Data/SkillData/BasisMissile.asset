@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89e36a68aeaeaa142aff324d240e0ec2, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 59bc5be479fcd664ab42731c101da235, type: 3}
+  m_Name: BasisMissile
   m_EditorClassIdentifier: 
-  unitName: Wizard
-  maxHP: 100
-  coin: 99450
-  exp: 0
-  level: 1
-  unitType: 0
+  skillName: BasisMissile
+  targetType: 0
+  skillType: 1
+  skillValue: 35
+  coolTime: 1
+  price: 0

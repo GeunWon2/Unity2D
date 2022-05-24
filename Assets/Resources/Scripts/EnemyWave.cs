@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class EnemyWave : MonoBehaviour
 {
     public GameObject enemyTile;
+    public UnityEvent<string> waveUISet;
     //public UnityEvent<List<UnitCore>> TargetPost;
 
     [SerializeField] private int waveLevel;
@@ -30,7 +31,7 @@ public class EnemyWave : MonoBehaviour
     {
 
         EnemyList.Clear();
-
+        waveUISet.Invoke("Wave : " + waveLevel.ToString());
 
         int level = waveLevel % 6;
         int bossNo = waveLevel / 6;

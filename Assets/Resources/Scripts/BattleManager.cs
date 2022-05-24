@@ -15,6 +15,8 @@ public class BattleManager : MonoBehaviour
     private List<UnitCore> enemyAlive;
 
     public UnityEvent NextStaget;
+    public UnityEvent<int> GetCoin;
+    public UnityEvent<int> GetExp;
 
 
     private void Start()
@@ -71,12 +73,16 @@ public class BattleManager : MonoBehaviour
 
     private void CreateAliveUnits()
     {
+        
         playerAlive = new();
 
         for (int i = 0; i < player.Count; i++)
         {
             playerAlive.Add(player[i]);
-            playerAlive[i].SetAlive();
+            if (!player[i].GetAlive())
+            {
+                playerAlive[i].SetAlive();
+            }
             playerAlive[i].UnitDiedEvent += UnitDied;
         }
 
@@ -120,11 +126,20 @@ public class BattleManager : MonoBehaviour
                 enemyAlive[i].UnitDiedEvent -= UnitDied;
                 enemyAlive.RemoveAt(i);
                 RemovePlayerTargets(dieUnit);
+                PlayerGetReward(dieUnit);
             }
         }
 
         CheckBattle();
     }
+
+    private void PlayerGetReward(UnitCore dieUnit)
+    {
+        GetCoin?.Invoke(dieUnit.GetCoin());
+        GetExp?.Invoke(dieUnit.GetExp());
+    }
+
+
 
     private void RemovePlayerTargets(UnitCore dieUnit)
     {

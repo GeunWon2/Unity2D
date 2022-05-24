@@ -22,7 +22,7 @@ public class UnitSkillData : ScriptableObject
     public SkillType skillType;
     public int skillValue;
     public float coolTime;
-
+    public int price;
     public int GetValue()
     {
         return skillValue * SkillTypeInit();

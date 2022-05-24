@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Bat
   maxHP: 100
+  coin: 10
+  exp: 50
+  level: 0
+  unitType: 1

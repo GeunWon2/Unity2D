@@ -113,6 +113,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 6949439273202349608, guid: 2b372df8e7882514492685036c923dd8, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 6349963520255332711, guid: 2b372df8e7882514492685036c923dd8, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &709554920
@@ -316,9 +318,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
+  initHP:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UISliderSetup, Assembly-CSharp
+        m_MethodName: SliderSetup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   changeHP:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UISliderSetup, Assembly-CSharp
+        m_MethodName: SliderChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HPZeroEvent:
     m_PersistentCalls:
       m_Calls:

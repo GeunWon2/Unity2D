@@ -15,8 +15,8 @@ MonoBehaviour:
   skillName: BasisMissile
   targetType: 0
   skillType: 1
-  skillValue: 10
-  coolTime: 5
+  skillValue: 40
+  coolTime: 2
   price: 0
   thumbnail: {fileID: 21300000, guid: f2d3e84dc4be8fa41a2a0224c2ca47d1, type: 3}
   bHas: 1

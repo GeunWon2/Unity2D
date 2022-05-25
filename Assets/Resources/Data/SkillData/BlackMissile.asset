@@ -15,8 +15,8 @@ MonoBehaviour:
   skillName: BlackMissile
   targetType: 0
   skillType: 1
-  skillValue: 35
-  coolTime: 8
+  skillValue: 80
+  coolTime: 3
   price: 30
   thumbnail: {fileID: 21300000, guid: 42149a33396e3274eb3de9da02eb785f, type: 3}
   bHas: 0

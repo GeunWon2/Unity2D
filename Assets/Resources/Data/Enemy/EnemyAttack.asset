@@ -15,6 +15,9 @@ MonoBehaviour:
   skillName: EnemyAttack
   targetType: 0
   skillType: 1
-  skillValue: 15
-  coolTime: 3
+  skillValue: 10
+  coolTime: 4
   price: 0
+  thumbnail: {fileID: 0}
+  bHas: 0
+  bSet: 0

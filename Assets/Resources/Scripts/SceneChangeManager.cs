@@ -39,7 +39,7 @@ public class SceneChangeManager : MonoBehaviour
 
         while(!operation.isDone)
         {
-            time += Time.time;
+            time += Time.time / 100;
 
             slider.value = time / 10f;
 

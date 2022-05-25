@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 892500170108954820}
   - component: {fileID: 892500170108954843}
   - component: {fileID: 2106829131104559131}
+  - component: {fileID: 7052221259252867160}
   m_Layer: 5
-  m_Name: MagicList
+  m_Name: ShopMagicList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,6 +88,47 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7052221259252867160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892500170108954821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa66b896f0863844b96c64fd6ac911c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 0}
+  buyMagic:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1907113954, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
+        m_TargetAssemblyTypeName: CoinSystem, Assembly-CSharp
+        m_MethodName: ChangeCoin
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnitSkillData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 37007381502167577, guid: 62a36ff95cb573741aaa711521bc2696, type: 3}
+        m_TargetAssemblyTypeName: PlayerSkillList, Assembly-CSharp
+        m_MethodName: BuySkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnitSkillData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  btnOffSprite: {fileID: 21300000, guid: b7d6f3355bf18124dbbfd568d3246522, type: 3}
 --- !u!1 &1161846163986088852
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,8 +586,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b73f28c0b0c6f46468b4f90bcd9484ea, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -597,7 +639,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8850070913442852414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7052221259252867160}
+        m_TargetAssemblyTypeName: SellMagicList, Assembly-CSharp
+        m_MethodName: BuyMagic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6917253678602151565
 MonoBehaviour:
   m_ObjectHideFlags: 0

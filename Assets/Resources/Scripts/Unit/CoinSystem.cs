@@ -8,11 +8,13 @@ public class CoinSystem : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public UnitCore player;
-
+    public static Func<int> coinCnt;
 
     private void Start()
     {
+        coinCnt = () => { return player.data.coin; };
         InitCoin(player.data.coin);
+        
     }
 
     private void InitCoin(int newCoin)
@@ -36,6 +38,12 @@ public class CoinSystem : MonoBehaviour
         SetText(GetCoin().ToString());
     }
 
+
+    public void ChangeCoin(UnitSkillData skilldata)
+    {
+        SetCoin(-skilldata.price);
+        SetText(GetCoin().ToString());
+    }
 
     public void SetText(string nweText)
     {

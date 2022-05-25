@@ -15,6 +15,9 @@ MonoBehaviour:
   skillName: FireMissile
   targetType: 0
   skillType: 1
-  skillValue: 30
+  skillValue: 20
   coolTime: 5
   price: 20
+  thumbnail: {fileID: 21300000, guid: c213bc04a83b7654c926482f4b41e557, type: 3}
+  bHas: 0
+  bSet: 0

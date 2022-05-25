@@ -26,17 +26,18 @@ public class UnitSkill : MonoBehaviour
     public UnityEvent<int, TargetType> targetToSkill;
     public UnityEvent<int> skillCastFinish;
 
-    //public delegate void SkillCooltimeChangeEventHanlder(float cooldownAmount);
-    //public event SkillCooltimeChangeEventHanlder skillCooldownChangeEvent;
+    public delegate void SkillCooltimeChangeEventHanlder(float cooldownAmount);
+    public event SkillCooltimeChangeEventHanlder skillCooldownChangeEvent;
 
-    //public delegate void SkillReadyEventHandler();
-    //public event SkillReadyEventHandler skillReadyEvent;
+    public delegate void SkillReadyEventHandler();
+    public event SkillReadyEventHandler skillReadyEvent;
 
     private int ID;
 
     private void Update()
     {
-        StartCooldown();
+        if(data!=null)
+            StartCooldown();
     }
 
     public void SetID(int newID)
@@ -46,7 +47,14 @@ public class UnitSkill : MonoBehaviour
 
     public void SetTimer()
     {
+        if(data != null)
         coolTimer = new CoolTimer(data.coolTime);
+    }
+
+    public void SetData(UnitSkillData skillData)
+    {
+
+        this.data = skillData;
     }
 
     public void StartCooldownSet()
@@ -62,7 +70,9 @@ public class UnitSkill : MonoBehaviour
         {
             coolTimer.UpdateTime();
 
-            if(coolTimer.Elapsed())
+            DelegateEventSkillCooldown();
+
+            if (coolTimer.Elapsed())
             {
                 coolTimer.Finish();
                 coolTimer.Init();
@@ -84,6 +94,7 @@ public class UnitSkill : MonoBehaviour
                 SkillCastingListAdd();
                 break;
             case SkillMode.Maual:
+                DelegateEventSkillReady();
                 break;
         }
     }
@@ -99,7 +110,6 @@ public class UnitSkill : MonoBehaviour
 
     public void StartCasting()
     {
-        Debug.Log(this.gameObject.name);
         skillTimeline.Play();
         bSkillReady = false;
     }
@@ -123,6 +133,14 @@ public class UnitSkill : MonoBehaviour
     }
 
 
+    private void DelegateEventSkillCooldown()
+    {
+        skillCooldownChangeEvent?.Invoke(coolTimer.GetTimertime());
+    }
 
+    private void DelegateEventSkillReady()
+    {
+        skillReadyEvent?.Invoke();
+    }
 
 }

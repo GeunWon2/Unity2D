@@ -23,6 +23,9 @@ public class UnitSkillData : ScriptableObject
     public int skillValue;
     public float coolTime;
     public int price;
+    public Sprite thumbnail;
+    public bool bHas = false;
+    public bool bSet = false;
     public int GetValue()
     {
         return skillValue * SkillTypeInit();

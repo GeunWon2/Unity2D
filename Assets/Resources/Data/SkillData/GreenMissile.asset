@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59bc5be479fcd664ab42731c101da235, type: 3}
-  m_Name: BasisMissile
+  m_Name: GreenMissile
   m_EditorClassIdentifier: 
-  skillName: BasisMissile
+  skillName: GreenMissile
   targetType: 0
   skillType: 1
-  skillValue: 10
-  coolTime: 5
-  price: 0
-  thumbnail: {fileID: 21300000, guid: f2d3e84dc4be8fa41a2a0224c2ca47d1, type: 3}
-  bHas: 1
-  bSet: 1
+  skillValue: 35
+  coolTime: 8
+  price: 30
+  thumbnail: {fileID: 21300000, guid: d33d3a81a6b189348b9f4dc23611c6d5, type: 3}
+  bHas: 0
+  bSet: 0

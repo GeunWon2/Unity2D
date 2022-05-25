@@ -31,7 +31,7 @@ public class UnitSkillSystem : MonoBehaviour
         }
     }
 
-    public void ADDSkills(List<UnitSkill> skill)
+    public void AddSkills(List<UnitSkill> skill)
     {
         int skilCnt = skills.Count;
         skills.AddRange(skill);
@@ -43,7 +43,7 @@ public class UnitSkillSystem : MonoBehaviour
 
     }
 
-    public void ADDSkills(UnitSkill skill)
+    public void AddSkills(UnitSkill skill)
     {
         int skilCnt = skills.Count;
         skills.Add(skill);
